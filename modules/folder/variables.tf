@@ -200,6 +200,17 @@ variable "deletion_protection" {
   default     = false
 }
 
+variable "deletion_policy" {
+  description = "Deletion policy setting for this folder."
+  default     = "DELETE"
+  type        = string
+  nullable    = false
+  validation {
+    condition     = contains(["ABANDON", "DELETE", "PREVENT"], var.deletion_policy)
+    error_message = "deletion_policy must be one of 'ABANDON', 'DELETE', 'PREVENT'."
+  }
+}
+
 variable "factories_config" {
   description = "Paths to data files and folders that enable factory functionality."
   type = object({

@@ -53,6 +53,7 @@ resource "google_folder" "folder" {
   display_name        = var.name
   parent              = lookup(local.ctx.folder_ids, var.parent, var.parent)
   deletion_protection = var.deletion_protection
+  deletion_policy     = var.deletion_policy
 }
 
 resource "google_kms_autokey_config" "default" {
